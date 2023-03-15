@@ -20,14 +20,19 @@ void SortedUnion(RandomIt range_begin, RandomIt range_end, RandomIt range_middle
     RandomIt range_left = range_begin;
     RandomIt range_right = range_middle;
     PrintRange(range_begin, range_end);
-    while (range_left != range_middle && range_right <=range_end)
+    while (range_left != range_middle && range_right != range_end)
     {
         if(*range_left > *range_right){
-            iter_swap(range_left, range_right);
+            rotate(range_left, range_right, range_right + 1);
+            cout << "Rotate"s << endl;
+
+            // 1 2 6 7 3 4 8 9
+            // 1 2 3 6 7 4 8 9
+
             range_right++;
-        } else{
-            range_left++;
         }
+
+        range_left++;
     }
     PrintRange(range_begin, range_end);
     
@@ -40,11 +45,7 @@ void MergeSort(RandomIt range_begin, RandomIt range_end){
         MergeSort(range_begin, range_middle);
         MergeSort(range_middle, range_end);
         SortedUnion(range_begin, range_end, range_middle);
-    } else if(range_begin != range_end){
-        if(*range_begin > *range_end){
-            iter_swap(range_begin, range_end);
-        }
-    }
+    } 
 }
 
 
