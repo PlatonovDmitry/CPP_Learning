@@ -20,29 +20,28 @@ string PrintRangeToString(It range_begin, It range_end) {
 }
 
 template <typename It>
+void GetPermutation(It range_begin, It range_end, It range_middle, vector<string>& output){
+    if(range_middle == range_end){
+        output.push_back(PrintRangeToString(range_begin, range_end));
+    } else{
+        for(int i = 0; i < range_end - range_middle; ++i){    
+            rotate(range_middle, range_middle + 1, range_end);
+            GetPermutation(range_begin, range_end, range_middle + 1, output);
+        }
+    }
+}
+
+template <typename It>
 vector<string> GetPermutations(It range_begin, It range_end){
-    // 1 2 3 4
-    
-
-
     vector<string> output;
-    auto range_next = range_begin + 1;
-    if(range_next == range_end){
-        output.push_back(*range_begin);
-        return output;
-    }
-
-    vector<string> middle_result = GetPermutations(It range_next, It range_end);
-    for(const string& cur_string : middle_result){
-        output.push_back(*range_begin + cur_string);
-        output.push_back(cur_string + *range_begin);
-    }
-
+    
+    GetPermutation(range_begin, range_end, range_begin, output);
+    
     return output;
 }
 
 int main() {
-    vector<int> permutation(3);
+    vector<int> permutation(4);
     // iota             -> http://ru.cppreference.com/w/cpp/algorithm/iota
     // Заполняет диапазон последовательно возрастающими значениями
     iota(permutation.begin(), permutation.end(), 1);
