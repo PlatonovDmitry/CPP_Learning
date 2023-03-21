@@ -16,35 +16,12 @@ void PrintRange(Iterator begin, Iterator end){
 }
 
 template <typename RandomIt>
-void SortedUnion(RandomIt range_begin, RandomIt range_end, RandomIt range_middle){
-    RandomIt range_left = range_begin;
-    RandomIt range_right = range_middle;
-    PrintRange(range_begin, range_end);
-    while (range_left != range_middle && range_right != range_end)
-    {
-        if(*range_left > *range_right){
-            rotate(range_left, range_right, range_right + 1);
-            cout << "Rotate"s << endl;
-
-            // 1 2 6 7 3 4 8 9
-            // 1 2 3 6 7 4 8 9
-
-            range_right++;
-        }
-
-        range_left++;
-    }
-    PrintRange(range_begin, range_end);
-    
-}
-
-template <typename RandomIt>
 void MergeSort(RandomIt range_begin, RandomIt range_end){
     if(range_end - range_begin > 1){
         RandomIt range_middle = range_begin + (range_end - range_begin) /2;
         MergeSort(range_begin, range_middle);
         MergeSort(range_middle, range_end);
-        SortedUnion(range_begin, range_end, range_middle);
+        inplace_merge(range_begin, range_middle, range_end);
     } 
 }
 
