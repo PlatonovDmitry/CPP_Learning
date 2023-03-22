@@ -2,6 +2,7 @@
 #include <iostream>
 #include <numeric>
 #include <stack>
+#include <vector>
 
 using namespace std;
 
@@ -17,24 +18,40 @@ template <typename Type>
 class Queue {
 public:
     void Push(const Type& element) {
-        // напишите реализацию
+        stack1_.push(element);
     }
     void Pop() {
-        // напишите реализацию
+        if(stack2_.empty()){
+            Reload();
+        }
+
+        stack2_.pop();
     }
     Type& Front() {
-        // напишите реализацию
+        if(stack2_.empty()){
+            Reload();
+        }
+
+        return stack2_.top();
     }
     uint64_t Size() const {
-        // напишите реализацию
+        return stack1_.size() + stack2_.size();
     }
     bool IsEmpty() const {
-        // напишите реализацию
+        return stack1_.empty() && stack2_.empty();
     }
 
 private:
     stack<Type> stack1_;
     stack<Type> stack2_;
+
+    void Reload(){
+        while (!stack1_.empty())
+        {
+            stack2_.push(stack1_.top());
+            stack1_.pop();
+        }
+    }
 };
 
 int main() {
