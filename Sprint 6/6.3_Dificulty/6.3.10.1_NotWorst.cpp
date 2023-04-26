@@ -8,13 +8,15 @@
 using namespace std;
 
 int EffectiveCount(const vector<int>& v, int n, int i) {
-    double expected_result = static_cast<int64_t>(v.size()) * (i + 1) / (n + 1);
-    double log_speed = log2(v.size());
+    auto expected_result = static_cast<int64_t>(v.size()) * (i + 1) / (n + 1);
+    auto log_speed = log2(v.size());
 
-    if(log_speed > expected_result){
+    if(log_speed >= expected_result){
+        cout << "Using find_if"s << endl;
         auto f_if = find_if(v.begin(), v.end(), [i](int curElement){return curElement > i;});
         return f_if - v.begin();
     } else {
+        cout << "Using upper_bound"s << endl;
         auto up_b = upper_bound(v.begin(), v.end(), i);
         return up_b - v.begin();
     }
