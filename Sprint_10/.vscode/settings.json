@@ -58,11 +58,6 @@
         "list": "cpp",
         "future": "cpp",
         "condition_variable": "cpp",
-        "mutex": "cpp",
-        "cstring": "cpp",
-        "unordered_set": "cpp",
-        "optional": "cpp",
-        "shared_mutex": "cpp",
-        "cfenv": "cpp"
+        "mutex": "cpp"
     }
 }

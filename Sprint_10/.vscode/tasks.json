@@ -1,0 +1,33 @@
+{
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "C/C++: g++ DEBUG",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${fileDirname}/**.cpp",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}",
+                "-D_GLIBCXX_DUBUG",
+                "-D_GLIBCXX_DEBUG_PEDANTIC",
+                "--std=c++17",
+                "-ltbb",
+                "-lpthread"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Debug"
+        }
+    ],
+    "version": "2.0.0"
+}
