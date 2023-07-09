@@ -63,6 +63,7 @@
         "unordered_set": "cpp",
         "optional": "cpp",
         "shared_mutex": "cpp",
-        "cfenv": "cpp"
+        "cfenv": "cpp",
+        "variant": "cpp"
     }
 }

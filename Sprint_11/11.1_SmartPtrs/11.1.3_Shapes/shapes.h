@@ -36,12 +36,12 @@ public:
         Size canvas_size = GetImageSize(image);
         for(int y=0; y<size_.height; ++y){
             int canvas_y = y+pos_.y;
-            if(canvas_y<0 || canvas_y > canvas_size.height){
+            if(canvas_y<0 || canvas_y >= canvas_size.height){
                 continue;
             }
-            for(int x=0; x<size_.width; ++y){
+            for(int x=0; x<size_.width; ++x){
                 int canvas_x = x+pos_.x;
-                if(canvas_x < 0 || canvas_x > canvas_size.width){
+                if(canvas_x < 0 || canvas_x >= canvas_size.width){
                     continue;
                 }
 
@@ -49,7 +49,9 @@ public:
                     continue;
                 }
 
-                image[canvas_y][canvas_x]= texture_ == nullptr ? '.' : texture_->GetPixelColor({x, y});
+                // char new_pix = texture_ == nullptr ? '.' : texture_->GetPixelColor({x, y});
+                // image[canvas_y] = image[canvas_y].replace(canvas_x, 1, &new_pix);
+                image[canvas_y][canvas_x] = texture_ == nullptr ? '.' : texture_->GetPixelColor({x, y});
             }
         }
     }
