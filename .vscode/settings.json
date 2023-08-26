@@ -68,6 +68,7 @@
         "stack": "cpp",
         "bitset": "cpp",
         "codecvt": "cpp",
-        "regex": "cpp"
+        "regex": "cpp",
+        "cinttypes": "cpp"
     }
 }
